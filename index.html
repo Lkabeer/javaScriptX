@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JavaScriptX | A.Samir &#12484;</title>
+	<link rel="shortcut icon" type="image/png" href="images/favIcon.png">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<header id="headerX" class="bg-success text-white p-4 mb-3">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6">
+					<h1 id="header-title">Phone Book &#12484;</h1>
+				</div>
+				<div class="col-sm-6 align-self-center">
+					<input type="text" id="filterX" class="form-control" placeholder="Search by name or number ... ">
+				</div>
+			</div>
+		</div>
+	</header>
+	
+	<div class="container">
+		<div id="main" class="card card-body mb-3">
+			<h2 class="title">Add New Contact</h2>
+			<form id="addContact" class="mt-2">
+				<div class="form-group row">
+				  <label for="nameX" class="col-3 col-form-label">Name: </label>
+				  <div class="col-9">
+					<input class="form-control" type="text" value="" id="nameX" maxlength="100" required placeholder="Contact's name">
+				  </div>
+				</div>
+				<div class="form-group row">
+				  <label for="phoneNumberX" class="col-3 col-form-label">Phone number: </label>
+				  <div class="col-9">
+					<input class="form-control" type="number" value="" id="phoneNumberX" required placeholder="xx-xxx-xxxx">
+				  </div>
+				</div>
+				<div class="form-group row">
+				  <label for="emailX" class="col-3 col-form-label">Email: </label>
+				  <div class="col-9">
+					<input class="form-control" type="email" value="" id="emailX" placeholder="Contact's email">
+				  </div>
+				</div>
+				<div class="form-group row">
+				  <label for="saveX" class="col-3 col-form-label"></label>
+				  <div class="col-9">
+					<input class="form-control btn btn-dark" type="submit" value="Save" id="saveX">
+				  </div>
+				</div>
+			</form>
+		</div>
+			
+		<h2 class="title mb-3">Contacts</h2>
+		<div class="row" id="contacts">
+			<div class="col-sm-6 contactX">
+				<div class="card p-3 mb-3 text-center">
+					<h4 class="card-title">
+						Ahmed Samir
+						<button class="btn btn-danger btn-sm float-right delete">X</button>
+					</h4>
+					<p class="card-text">Phone: 02-333-8831</p>
+					<p class="card-text">Email: ahmed@Lkabeer.com</p>
+				</div>
+			</div>
+			<div class="col-sm-6 contactX">
+				<div class="card p-3 mb-3 text-center">
+					<h4 class="card-title">
+						Hala Habib
+						<button class="btn btn-danger btn-sm float-right delete">X</button>
+					</h4>
+					<p class="card-text">Phone: 02-376-0107</p>
+					<p class="card-text">Email: ahmed@Lkabeer.com</p>
+				</div>
+			</div>
+		</div>
+
+		<ul id="item" class="list-group">
+			<li class="list-group-item">item 1
+				<button class="btn btn-danger btn-sm float-right delete">X</button>
+			</li>
+		</ul>
+	</div>
+
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/script.js"></script>
+</body>
+</html>
