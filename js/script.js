@@ -1,16 +1,30 @@
 // Global X-Team
 var contactsJSON;
+var contactsPerPageX = 10;
+var pageX = 0;
+var load;
 
 // sort data alphabetically X-Team
 function sortByName(x,y) {
   return ((x.name == y.name) ? 0 : ((x.name > y.name) ? 1 : -1 ));
 }
 
+// List Contacts X-Team
+function listContacts(contactsPerPage, page) {
+	startX = page * contactsPerPage;
+	endX = startX + contactsPerPage;
+
+	for(i = startX; i < endX; i++){
+		load(i);
+		console.log(i);
+	}
+}
+
 // load json Data X-Team
 $(function() {
 	$.getJSON("js/mock-data.json", function(data) {
-		data.sort(sortByName);
-		function loadData(i) {
+		load = function loadData(i) {
+			data.sort(sortByName);
 			contactsJSON = data;
 						
 			var newName = data[i].name;
@@ -44,12 +58,8 @@ $(function() {
 			emailX.appendChild(document.createTextNode(newEmail));
 			divCard.appendChild(emailX);
 		}
-		
-		for(i = 0; i < data.length; i++){
-			loadData(i);
-		}
+		listContacts(15, 2);
 	});
-	
 });
 
 // data sample X-Team
@@ -66,11 +76,7 @@ var PhoneBook = function (name, phone, email) {
 	this.email = email;
 	
 	this.add = function() {
-		var newName = document.getElementById('nameX').value;
-		var newPhoneNumber = document.getElementById('phoneNumberX').value;
-		var newEmail = document.getElementById('emailX').value;
-
-		contactsJSON.push(newContact);
+		contactsJSON.push(this);
 
 		console.log(contactsJSON.length);
 
@@ -84,7 +90,7 @@ var PhoneBook = function (name, phone, email) {
 
 		var nameX = document.createElement('h4');
 		nameX.className = "card-title";
-		nameX.appendChild(document.createTextNode(newName));
+		nameX.appendChild(document.createTextNode(this.name));
 		divCard.appendChild(nameX);
 
 		var deleteBtn = document.createElement('button');
@@ -93,12 +99,12 @@ var PhoneBook = function (name, phone, email) {
 
 		var phoneX = document.createElement('p');
 		phoneX.className = "card-text";
-		phoneX.appendChild(document.createTextNode(newPhoneNumber));
+		phoneX.appendChild(document.createTextNode(this.phone));
 		divCard.appendChild(phoneX);
 
 		var emailX = document.createElement('p');
 		emailX.className = "card-text";
-		emailX.appendChild(document.createTextNode(newEmail));
+		emailX.appendChild(document.createTextNode(this.email));
 		divCard.appendChild(emailX);
 	};
 	this.remove = function (index) {};
@@ -120,6 +126,10 @@ filter.addEventListener('keyup', filterContacts);
 function addContact(e) {
 	e.preventDefault();
 
+	var newName = document.getElementById('nameX').value;
+	var newPhoneNumber = document.getElementById('phoneNumberX').value;
+	var newEmail = document.getElementById('emailX').value;
+
 	var newContact = new PhoneBook(newName, newPhoneNumber, newEmail);
 	newContact.add();
 }
@@ -130,7 +140,14 @@ function removeContact(e) {
 		if(confirm('Are you sure?')) {
 			var divContact = e.target.parentElement.parentElement.parentElement;
 			contactsContainer.removeChild(divContact);
-			contactsJSON = contactsJSON.filter(function(x){return x})
+			
+			for(i = 0; i < contactsJSON.length; i++) {
+				if(contactsJSON[i].email == e.target.parentElement.nextElementSibling.nextElementSibling.innerHTML) {
+					console.log(i);
+					contactsJSON.splice(i, 1);
+				}
+			}
+			console.log(contactsJSON.length);
 		}
 	}
 }
