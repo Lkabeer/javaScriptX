@@ -35,7 +35,7 @@
 				<div class="form-group row">
 				  <label for="phoneNumberX" class="col-3 col-form-label">Phone number: </label>
 				  <div class="col-9">
-					<input class="form-control" type="number" value="" id="phoneNumberX" required placeholder="xx-xxx-xxxx">
+					<input class="form-control" type="text" value="" id="phoneNumberX" required placeholder="xx-xxx-xxxx" pattern="^(?:\(\d{2}\)|\d{2}-)\d{3}-\d{4}$" oninvalid="setCustomValidity('Please follow this format xx-xxx-xxxx')" onchange="try{setCustomValidity('')}catch(e){}">
 				  </div>
 				</div>
 				<div class="form-group row">

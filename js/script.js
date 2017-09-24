@@ -58,11 +58,11 @@ $(function() {
 			emailX.appendChild(document.createTextNode(newEmail));
 			divCard.appendChild(emailX);
 		}
-		listContacts(15, 2);
+		listContacts(10, 0);
 	});
 });
 
-// data sample X-Team
+// data Sample X-Team
 var contactInfo = {
 	name: "Ahmed",
 	phone: "02-333-8831", 
@@ -125,7 +125,7 @@ filter.addEventListener('keyup', filterContacts);
 // add Contact X-Team
 function addContact(e) {
 	e.preventDefault();
-
+	
 	var newName = document.getElementById('nameX').value;
 	var newPhoneNumber = document.getElementById('phoneNumberX').value;
 	var newEmail = document.getElementById('emailX').value;
